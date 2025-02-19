@@ -1,0 +1,10 @@
+[project]
+name = "weaviate-lab"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "weaviate>=0.1.2",
+    "weaviate-client>=4.11.0",
+]
