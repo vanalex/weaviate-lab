@@ -1,21 +1,26 @@
 import weaviate
 import weaviate.classes.query as wq
-from settings.settings import Settings
 
+from datetime import datetime
+
+from settings.settings import Settings
 
 settings = Settings()
 # Get the collection
 client = weaviate.connect_to_local(headers={"X-OpenAI-Api-Key": settings.openai_api_key})
 movies = client.collections.get("Movie")
 
+# Get the collection
+movies = client.collections.get("Movie")
+
 # Perform query
 response = movies.query.near_text(
     query="dystopian future",
-    limit=20,
-    distance=0.6,
-    return_metadata=wq.MetadataQuery(distance=True)
+    limit=5,
+    return_metadata=wq.MetadataQuery(distance=True),
+    filters=wq.Filter.by_property("release_date").greater_than(datetime(2020, 1, 1))
 )
-print(len(response.objects))
+
 # Inspect the response
 for o in response.objects:
     print(

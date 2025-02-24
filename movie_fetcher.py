@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import TypedDict
 
 import weaviate
-from pydantic import BaseModel
 
 from settings.settings import Settings
 
@@ -23,4 +22,5 @@ movies = client.collections.get("Movie")
 
 response = movies.query.fetch_objects(limit=2,
                                       return_properties=Movie)
+client.close()
 print(response)
