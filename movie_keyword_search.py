@@ -1,6 +1,5 @@
 import weaviate
 import weaviate.classes.query as wq
-import os
 
 from settings.settings import Settings
 
